@@ -1,6 +1,6 @@
 package nl.ns.frame.bicyclelockersservice.customers.repositories;
 
-import nl.ns.frame.bicyclelockersservice.customers.repositories.models.Customer;
+import nl.ns.frame.bicyclelockersservice.customers.repositories.entities.Customers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +21,21 @@ class CustomersRepositoryTest {
     @Test
     void testFindById() {
         assertThat(customersRepository).isNotNull();
-        final Customer customer = customersRepository.findById("dd01b984-e7f1-466a-91a1-6f2b17042a1e");
-        assertThat(customer).isNotNull();
-        assertThat(customer.getId()).isEqualTo("dd01b984-e7f1-466a-91a1-6f2b17042a1e");
-        assertThat(customer.getName()).isEqualTo("Piet Robinson");
+        final Customers customers = customersRepository.findById("dd01b984-e7f1-466a-91a1-6f2b17042a1e");
+        assertThat(customers).isNotNull();
+        assertThat(customers.getId()).isEqualTo("dd01b984-e7f1-466a-91a1-6f2b17042a1e");
+        assertThat(customers.getName()).isEqualTo("Piet Robinson");
     }
 
     @Test
     void testFindAll() {
         assertThat(customersRepository).isNotNull();
-        final List<Customer> customerList = customersRepository.findAll();
-        assertThat(customerList).isNotEmpty();
-        final Customer customer = customerList.get(0);
-        assertThat(customer).isNotNull();
-        assertThat(customer.getId()).isEqualTo("dd01b984-e7f1-466a-91a1-6f2b17042a1e");
-        assertThat(customer.getName()).isEqualTo("Piet Robinson");
+        final List<Customers> customersList = customersRepository.findAll();
+        assertThat(customersList).isNotEmpty();
+        final Customers customers = customersList.get(0);
+        assertThat(customers).isNotNull();
+        assertThat(customers.getId()).isEqualTo("dd01b984-e7f1-466a-91a1-6f2b17042a1e");
+        assertThat(customers.getName()).isEqualTo("Piet Robinson");
     }
 
 }

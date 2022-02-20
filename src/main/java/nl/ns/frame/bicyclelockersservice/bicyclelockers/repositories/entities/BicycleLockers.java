@@ -1,4 +1,4 @@
-package nl.ns.frame.bicyclelockersservice.customers.repositories.models;
+package nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,11 +12,13 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @Getter
-public class Customer {
+@Setter
+public class BicycleLockers {
 
     @Id
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
-    private String name;
+    private String readableId;
+    private String status;
 }
