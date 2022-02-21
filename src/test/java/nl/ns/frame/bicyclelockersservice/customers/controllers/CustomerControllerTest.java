@@ -51,7 +51,7 @@ class CustomerControllerTest {
     void testCreateCustomer() {
         final Customer customer = new Customer("1", null,"Test Tester");
         when(customersService.retrieveAllCustomers()).thenReturn(List.of(customer));
-        final ResponseEntity<List<Customer>> result = customersController.retrieveAllCustomer();
+        final ResponseEntity<List<Customer>> result = customersController.retrieveAllCustomers();
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(result.getBody()).isNotNull();
         assertThat(result.getBody().get(0)).isNotNull();

@@ -1,5 +1,6 @@
 package nl.ns.frame.bicyclelockersservice.bicyclelockers.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.models.BicycleLockersRequest;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLocker;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.services.BicycleLockersService;
@@ -25,21 +26,24 @@ public class BicycleLockersController {
     }
 
     @PostMapping
-    public ResponseEntity<BicycleLocker> createBicycleLockers(@RequestBody final BicycleLockersRequest bicycleLockersRequest) {
+    @Operation(summary = "Create a bicycle locker")
+    public ResponseEntity<BicycleLocker> createBicycleLocker(@RequestBody final BicycleLockersRequest bicycleLockersRequest) {
         bicycleLockersService.createBicycleLocker(bicycleLockersRequest);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<BicycleLocker> updateBicycleLockers(@PathVariable final String id, @RequestBody final BicycleLockersRequest bicycleLockersRequest) {
+    @Operation(summary = "Update a bicycle locker")
+    public ResponseEntity<BicycleLocker> updateBicycleLocker(@PathVariable final String id, @RequestBody final BicycleLockersRequest bicycleLockersRequest) {
         bicycleLockersService.updateBicycleLocker(id, bicycleLockersRequest);
 
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<BicycleLocker> deleteBicycleLockers(@PathVariable final String id) {
+    @Operation(summary = "Delete a bicycle locker")
+    public ResponseEntity<BicycleLocker> deleteBicycleLocker(@PathVariable final String id) {
         return bicycleLockersService.deleteBicycleLocker(id);
     }
 }

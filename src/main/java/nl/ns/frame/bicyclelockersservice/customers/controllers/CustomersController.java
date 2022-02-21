@@ -1,5 +1,6 @@
 package nl.ns.frame.bicyclelockersservice.customers.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import nl.ns.frame.bicyclelockersservice.customers.models.CustomersRequest;
 import nl.ns.frame.bicyclelockersservice.customers.repositories.entities.Customer;
 import nl.ns.frame.bicyclelockersservice.customers.services.CustomersService;
@@ -24,13 +25,15 @@ public class CustomersController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Customer>> retrieveAllCustomer() {
+    @Operation(summary = "Retrieve all customers")
+    public ResponseEntity<List<Customer>> retrieveAllCustomers() {
         final List<Customer> customerList = customersService.retrieveAllCustomers();
 
         return ResponseEntity.ok(customerList);
     }
 
     @GetMapping("{id}")
+    @Operation(summary = "Retrieve customer based on the given ID")
     public ResponseEntity<Customer> retrieveCustomer(@PathVariable final String id) {
         final Customer customer = customersService.retrieveCustomer(id);
 
@@ -38,6 +41,7 @@ public class CustomersController {
     }
 
     @PutMapping
+    @Operation(summary = "Create a customer")
     public ResponseEntity<Customer> createCustomer(@RequestBody final CustomersRequest customersRequest) {
         customersService.createCustomer(customersRequest);
 
@@ -45,6 +49,7 @@ public class CustomersController {
     }
 
     @PutMapping("{customerId}/bicycle-lockers/{bicycleLockerId}")
+    @Operation(summary = "Reserve bicycle locker for the given customer ID")
     public ResponseEntity<Customer> reserveBicycleLocker(@PathVariable final String customerId, @PathVariable final String bicycleLockerId) {
         customersService.reserveBicycleLockers(customerId, bicycleLockerId);
 
