@@ -2,7 +2,7 @@ package nl.ns.frame.bicyclelockersservice.bicyclelockers.services;
 
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.models.BicycleLockersRequest;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.BicycleLockersRepository;
-import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLockers;
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLocker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,20 +17,24 @@ public class BicycleLockersService {
         this.bicycleLockersRepository = bicycleLockersRepository;
     }
 
-    public BicycleLockers createBicycleLocker(final BicycleLockersRequest bicycleLockersRequest) {
-        final BicycleLockers bicycleLockers = new BicycleLockers(null, bicycleLockersRequest.getReadableId(), bicycleLockersRequest.getStatus());
-        return bicycleLockersRepository.save(bicycleLockers);
+    public BicycleLocker createBicycleLocker(final BicycleLockersRequest bicycleLockersRequest) {
+        final BicycleLocker bicycleLocker = new BicycleLocker(null, bicycleLockersRequest.getReadableId(), bicycleLockersRequest.getStatus());
+        return bicycleLockersRepository.save(bicycleLocker);
     }
 
-    public BicycleLockers updateBicycleLocker(final String id, final BicycleLockersRequest bicycleLockersRequest) {
-        final BicycleLockers bicycleLockers = bicycleLockersRepository.findById(id);
-        bicycleLockers.setReadableId(bicycleLockersRequest.getReadableId());
-        bicycleLockers.setStatus(bicycleLockersRequest.getStatus());
-        return bicycleLockersRepository.save(bicycleLockers);
+    public BicycleLocker updateBicycleLocker(final String id, final BicycleLockersRequest bicycleLockersRequest) {
+        final BicycleLocker bicycleLocker = bicycleLockersRepository.findById(id);
+        bicycleLocker.setReadableId(bicycleLockersRequest.getReadableId());
+        bicycleLocker.setStatus(bicycleLockersRequest.getStatus());
+        return bicycleLockersRepository.save(bicycleLocker);
     }
 
-    public ResponseEntity<BicycleLockers> deleteBicycleLocker(final String id) {
+    public ResponseEntity<BicycleLocker> deleteBicycleLocker(final String id) {
         final Integer result = bicycleLockersRepository.deleteById(id);
         return result != 1 ? ResponseEntity.badRequest().build() : ResponseEntity.noContent().build();
+    }
+
+    public BicycleLocker findBicycleLocker(final String id) {
+        return bicycleLockersRepository.findById(id);
     }
 }

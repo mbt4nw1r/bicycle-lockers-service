@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-class BicycleLockersRepositoryTest {
+class BicycleLockerRepositoryTest {
 
     @Autowired
     private BicycleLockersRepository bicycleLockersRepository;

@@ -1,11 +1,16 @@
 package nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @NoArgsConstructor
@@ -13,7 +18,8 @@ import javax.persistence.Id;
 @ToString
 @Getter
 @Setter
-public class BicycleLockers {
+@Table(name="bicycle_lockers")
+public class BicycleLocker {
 
     @Id
     @GeneratedValue(generator = "uuid4")

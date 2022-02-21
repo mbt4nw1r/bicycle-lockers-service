@@ -13,3 +13,9 @@ CREATE TABLE customers
     PRIMARY KEY (id)
 );
 
+CREATE TABLE customers_bicycle_lockers
+(
+    customers_id   VARCHAR(255) NOT NULL,
+    bicycle_lockers_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (customers_id, bicycle_lockers_id)
+);

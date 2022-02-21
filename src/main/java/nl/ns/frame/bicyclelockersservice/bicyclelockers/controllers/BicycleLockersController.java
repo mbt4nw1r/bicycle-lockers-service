@@ -1,11 +1,17 @@
 package nl.ns.frame.bicyclelockersservice.bicyclelockers.controllers;
 
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.models.BicycleLockersRequest;
-import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLockers;
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLocker;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.services.BicycleLockersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/bicycle-lockers")
@@ -19,21 +25,21 @@ public class BicycleLockersController {
     }
 
     @PostMapping
-    public ResponseEntity<BicycleLockers> createBicycleLockers(@RequestBody final BicycleLockersRequest bicycleLockersRequest) {
+    public ResponseEntity<BicycleLocker> createBicycleLockers(@RequestBody final BicycleLockersRequest bicycleLockersRequest) {
         bicycleLockersService.createBicycleLocker(bicycleLockersRequest);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<BicycleLockers> updateBicycleLockers(@PathVariable final String id, @RequestBody final BicycleLockersRequest bicycleLockersRequest) {
+    public ResponseEntity<BicycleLocker> updateBicycleLockers(@PathVariable final String id, @RequestBody final BicycleLockersRequest bicycleLockersRequest) {
         bicycleLockersService.updateBicycleLocker(id, bicycleLockersRequest);
 
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<BicycleLockers> deleteBicycleLockers(@PathVariable final String id) {
+    public ResponseEntity<BicycleLocker> deleteBicycleLockers(@PathVariable final String id) {
         return bicycleLockersService.deleteBicycleLocker(id);
     }
 }

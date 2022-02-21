@@ -1,7 +1,7 @@
 package nl.ns.frame.bicyclelockersservice.bicyclelockers.controllers;
 
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.models.BicycleLockersRequest;
-import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLockers;
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLocker;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.services.BicycleLockersService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class BicycleLockersControllerTest {
+class BicycleLockerControllerTest {
 
     @Mock
     private BicycleLockersService bicycleLockersService;
@@ -27,10 +27,10 @@ class BicycleLockersControllerTest {
 
     @Test
     void testCreateBicycleLockers() {
-        final BicycleLockers bicycleLockers = new BicycleLockers("a7fdb2fd-f743-477d-a67b-93c00792ead6", "A3", "AVAILABLE");
+        final BicycleLocker bicycleLocker = new BicycleLocker("a7fdb2fd-f743-477d-a67b-93c00792ead6", "A3", "AVAILABLE");
         final BicycleLockersRequest bicycleLockersRequest = BicycleLockersRequest.builder().readableId("A3").status("AVAILABLE").build();
-        when(bicycleLockersService.createBicycleLocker(any(BicycleLockersRequest.class))).thenReturn(bicycleLockers);
-        final ResponseEntity<BicycleLockers> result = bicycleLockersController.createBicycleLockers(bicycleLockersRequest);
+        when(bicycleLockersService.createBicycleLocker(any(BicycleLockersRequest.class))).thenReturn(bicycleLocker);
+        final ResponseEntity<BicycleLocker> result = bicycleLockersController.createBicycleLockers(bicycleLockersRequest);
         assertThat(result).isNotNull();
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
         assertThat(result.getBody()).isNull();
@@ -38,10 +38,10 @@ class BicycleLockersControllerTest {
 
     @Test
     void testUpdateBicycleLockers() {
-        final BicycleLockers bicycleLockers = new BicycleLockers("a7fdb2fd-f743-477d-a67b-93c00792ead6", "A3", "AVAILABLE");
+        final BicycleLocker bicycleLocker = new BicycleLocker("a7fdb2fd-f743-477d-a67b-93c00792ead6", "A3", "AVAILABLE");
         final BicycleLockersRequest bicycleLockersRequest = BicycleLockersRequest.builder().readableId("A4").status("AVAILABLE").build();
-        when(bicycleLockersService.updateBicycleLocker(anyString(), any(BicycleLockersRequest.class))).thenReturn(bicycleLockers);
-        final ResponseEntity<BicycleLockers> result = bicycleLockersController.updateBicycleLockers("a7fdb2fd-f743-477d-a67b-93c00792ead6", bicycleLockersRequest);
+        when(bicycleLockersService.updateBicycleLocker(anyString(), any(BicycleLockersRequest.class))).thenReturn(bicycleLocker);
+        final ResponseEntity<BicycleLocker> result = bicycleLockersController.updateBicycleLockers("a7fdb2fd-f743-477d-a67b-93c00792ead6", bicycleLockersRequest);
         assertThat(result).isNotNull();
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
         assertThat(result.getBody()).isNull();
@@ -50,7 +50,7 @@ class BicycleLockersControllerTest {
     @Test
     void testDeleteBicycleLockers() {
         when(bicycleLockersService.deleteBicycleLocker(anyString())).thenReturn(ResponseEntity.noContent().build());
-        final ResponseEntity<BicycleLockers> result = bicycleLockersController.deleteBicycleLockers("a7fdb2fd-f743-477d-a67b-93c00792ead6");
+        final ResponseEntity<BicycleLocker> result = bicycleLockersController.deleteBicycleLockers("a7fdb2fd-f743-477d-a67b-93c00792ead6");
         assertThat(result).isNotNull();
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
         assertThat(result.getBody()).isNull();
