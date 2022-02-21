@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-class CustomerRepositoryTest {
+class CustomersRepositoryTest {
 
     @Autowired
     private CustomersRepository customersRepository;

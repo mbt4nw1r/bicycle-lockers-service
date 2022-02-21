@@ -19,7 +19,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CustomerControllerTest {
+class CustomersControllerTest {
 
     @Mock
     private CustomersService customersService;
