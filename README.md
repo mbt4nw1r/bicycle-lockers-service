@@ -26,3 +26,7 @@ You can also pull this project from the docker hub like so:
 docker pull mbt4nw1r/bicycle-lockers-service
 docker run -p 1111:1111 mbt4nw1r/bicycle-lockers-service
 ```
+
+## Open API
+Once the application is running, you can see a list of overview of which endpoints are available with the given description by visiting:
+http://localhost:1111/swagger-ui/index.html
