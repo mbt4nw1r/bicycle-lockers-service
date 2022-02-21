@@ -5,8 +5,8 @@ import nl.ns.frame.bicyclelockersservice.bicyclelockers.services.BicycleLockersS
 import nl.ns.frame.bicyclelockersservice.customers.models.CustomersRequest;
 import nl.ns.frame.bicyclelockersservice.customers.repositories.CustomersRepository;
 import nl.ns.frame.bicyclelockersservice.customers.repositories.entities.Customer;
-import nl.ns.frame.bicyclelockersservice.exceptions.BicycleLockersBadRequestException;
-import nl.ns.frame.bicyclelockersservice.exceptions.CustomersBadRequestException;
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.exceptions.BicycleLockersBadRequestException;
+import nl.ns.frame.bicyclelockersservice.customers.exceptions.CustomersBadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

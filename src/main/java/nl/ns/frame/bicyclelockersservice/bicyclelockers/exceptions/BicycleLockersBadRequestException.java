@@ -1,4 +1,4 @@
-package nl.ns.frame.bicyclelockersservice.exceptions;
+package nl.ns.frame.bicyclelockersservice.bicyclelockers.exceptions;
 
 public class BicycleLockersBadRequestException extends RuntimeException {
 

@@ -1,5 +1,6 @@
 package nl.ns.frame.bicyclelockersservice.bicyclelockers.services;
 
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.exceptions.BicycleLockersBadRequestException;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.models.BicycleLockersRequest;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.BicycleLockersRepository;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLocker;
@@ -12,12 +13,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class BicycleLockerServiceTest {
+class BicycleLockersServiceTest {
 
     @Mock
     private BicycleLockersRepository bicycleLockersRepository;
@@ -56,11 +58,16 @@ class BicycleLockerServiceTest {
     }
 
     @Test
-    void givenNotExistingIdExpectedBadRequestResponse() {
+    void givenNotExistingIdExpectedException() {
         when(bicycleLockersRepository.deleteById(anyString())).thenReturn(0);
-        final ResponseEntity<BicycleLocker> result = bicycleLockersService.deleteBicycleLocker("NotExistingId");
-        assertThat(result).isNotNull();
-        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThrows(BicycleLockersBadRequestException.class, () -> bicycleLockersService.deleteBicycleLocker("NotExistingId"));
+    }
+
+    @Test
+    void givenInvalidBicycleLockerIdExpectedException() {
+        final BicycleLockersRequest bicycleLockersRequest = BicycleLockersRequest.builder().readableId("A1").status("AVAILABLE").build();
+        when(bicycleLockersRepository.findById(anyString())).thenReturn(null);
+        assertThrows(BicycleLockersBadRequestException.class, () -> bicycleLockersService.updateBicycleLocker("1", bicycleLockersRequest));
     }
 
 }

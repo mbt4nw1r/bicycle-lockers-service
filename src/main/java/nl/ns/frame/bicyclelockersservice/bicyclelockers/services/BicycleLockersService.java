@@ -1,5 +1,6 @@
 package nl.ns.frame.bicyclelockersservice.bicyclelockers.services;
 
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.exceptions.BicycleLockersBadRequestException;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.models.BicycleLockersRequest;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.BicycleLockersRepository;
 import nl.ns.frame.bicyclelockersservice.bicyclelockers.repositories.entities.BicycleLocker;
@@ -24,6 +25,9 @@ public class BicycleLockersService {
 
     public BicycleLocker updateBicycleLocker(final String id, final BicycleLockersRequest bicycleLockersRequest) {
         final BicycleLocker bicycleLocker = bicycleLockersRepository.findById(id);
+        if (bicycleLocker == null) {
+            throw new BicycleLockersBadRequestException("Bicycle locker cannot be found");
+        }
         bicycleLocker.setReadableId(bicycleLockersRequest.getReadableId());
         bicycleLocker.setStatus(bicycleLockersRequest.getStatus());
         return bicycleLockersRepository.save(bicycleLocker);
@@ -31,7 +35,10 @@ public class BicycleLockersService {
 
     public ResponseEntity<BicycleLocker> deleteBicycleLocker(final String id) {
         final Integer result = bicycleLockersRepository.deleteById(id);
-        return result != 1 ? ResponseEntity.badRequest().build() : ResponseEntity.noContent().build();
+        if (result != 1) {
+            throw new BicycleLockersBadRequestException("Cannot find bicycle locker to delete");
+        }
+        return ResponseEntity.noContent().build();
     }
 
     public BicycleLocker findBicycleLocker(final String id) {

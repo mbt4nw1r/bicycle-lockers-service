@@ -5,8 +5,8 @@ import nl.ns.frame.bicyclelockersservice.bicyclelockers.services.BicycleLockersS
 import nl.ns.frame.bicyclelockersservice.customers.models.CustomersRequest;
 import nl.ns.frame.bicyclelockersservice.customers.repositories.CustomersRepository;
 import nl.ns.frame.bicyclelockersservice.customers.repositories.entities.Customer;
-import nl.ns.frame.bicyclelockersservice.exceptions.BicycleLockersBadRequestException;
-import nl.ns.frame.bicyclelockersservice.exceptions.CustomersBadRequestException;
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.exceptions.BicycleLockersBadRequestException;
+import nl.ns.frame.bicyclelockersservice.customers.exceptions.CustomersBadRequestException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CustomerServiceTest {
+class CustomersServiceTest {
 
     @Mock
     private CustomersRepository customersRepository;

@@ -1,4 +1,4 @@
-package nl.ns.frame.bicyclelockersservice.exceptions;
+package nl.ns.frame.bicyclelockersservice.customers.exceptions;
 
 public class CustomersBadRequestException extends RuntimeException {
 

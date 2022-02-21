@@ -1,5 +1,7 @@
 package nl.ns.frame.bicyclelockersservice.exceptions;
 
+import nl.ns.frame.bicyclelockersservice.bicyclelockers.exceptions.BicycleLockersBadRequestException;
+import nl.ns.frame.bicyclelockersservice.customers.exceptions.CustomersBadRequestException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
