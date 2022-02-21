@@ -20,9 +20,9 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 mvn spring-boot:run
 ```
 
-You can also build this project with docker and run it like so:
+You can also pull this project from the docker hub like so:
 
 ```shell
-docker build -t bicycle-lockers-service .
-docker run -p 1111:1111 bicycle-lockers-service
+docker pull mbt4nw1r/bicycle-lockers-service
+docker run -p 1111:1111 mbt4nw1r/bicycle-lockers-service
 ```
